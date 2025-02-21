@@ -1,0 +1,55 @@
+CREATE TABLE IF NOT EXISTS "UserInfo" (
+	"UserID"	TEXT NOT NULL UNIQUE,
+	"Password"	TEXT NOT NULL,
+	"FirstName"	TEXT NOT NULL,
+	"LastName"	TEXT NOT NULL,
+	"Email"	TEXT NOT NULL,
+	"BirthDate"	TEXT NOT NULL,
+	"Mobile"	TEXT,
+	PRIMARY KEY("UserID")
+);
+
+
+CREATE TABLE IF NOT EXISTS "About" (
+	"ID"	INTEGER NOT NULL,
+	"UserID"	TEXT NOT NULL,
+	"AboutType"	TEXT,
+	"AboutDesc"	TEXT,
+	PRIMARY KEY("ID" AUTOINCREMENT)
+);
+
+CREATE TABLE IF NOT EXISTS "Posts" (
+	"ID"	INTEGER NOT NULL,
+	"UserID"	TEXT NOT NULL,
+	"Title"	TEXT NOT NULL,
+	"Content"	TEXT NOT NULL,
+	"Photo"	BLOB,
+	"CreateDate"	TEXT,
+	PRIMARY KEY("ID" AUTOINCREMENT),
+	FOREIGN KEY("UserID") REFERENCES "UserInfo"("UserID")
+);
+
+CREATE TABLE IF NOT EXISTS "Comments" (
+	"ID"	INTEGER NOT NULL,
+	"PostID"	INTEGER,
+	"UserID"	TEXT,
+	"Comment_Text"	TEXT,
+	"CreateDate"	TEXT,
+	PRIMARY KEY("ID"),
+	FOREIGN KEY("PostID") REFERENCES "Posts"("ID"),
+	FOREIGN KEY("UserID") REFERENCES "UserInfo"("UserID")
+);
+
+CREATE TABLE IF NOT EXISTS "Expense" (
+	"ID"	INTEGER NOT NULL,
+	"UserID"	TEXT NOT NULL,
+	"ExpenseName"	TEXT,
+	"Category"	TEXT,
+	"Amount"	REAL,
+	"ExpenseDate"	TEXT,
+	"Notes"	TEXT,
+	"CreateDate"	TEXT,
+	"UpdateDate"	TEXT,
+	PRIMARY KEY("ID" AUTOINCREMENT),
+	FOREIGN KEY("UserID") REFERENCES "UserInfo"("UserID")
+);

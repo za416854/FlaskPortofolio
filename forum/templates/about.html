@@ -1,0 +1,94 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container my-5">
+  <div class="d-flex justify-content-center">
+    <div class="card bg-dark text-light p-4" style="width: 80rem">
+      <!-- hyperlink Section -->
+      <div class="d-flex justify-content  mb-0">
+        <h1 class="mb-2">About Wen-Hsuan Hu</h1>
+        <a href="https://za416854.github.io/" target="_blank" class="text-white ms-auto mx-5 fa-3x">
+          <i class="fas fa-home"></i>
+        </a>
+        <a href="https://www.facebook.com/chris.hu.92/" target="_blank" class="text-white  mx-5 fa-3x">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://github.com/za416854" target="_blank" class="text-white mx-5 fa-3x">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/kris-wen-hsuan-hu-a71b51183/" target="_blank" class="text-white mx-5 fa-3x">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+      <hr />
+      <h2 class="my-3">Description</h2>
+      <div class="mb-3">
+        {% for description in about_dict.Description %}
+        <p>{{ description }}</p>
+        <br />
+        {% endfor %}
+      </div>
+      <!-- education Section -->
+      <h2 class="mb-3">Education History</h2>
+      <ul class="list-group mb-5">
+        {% for education in about_dict.Education %}
+        <li class="list-group-item">{{ education }}</li>
+        {% endfor %}
+      </ul>
+
+      <!-- languages Programming Section -->
+      <h2 class="mb-3">Languages For Programming</h2>
+      <ul class="list-group mb-5">
+        {% for language in about_dict.Languages %}
+        <li class="list-group-item">{{ language }}</li>
+        {% endfor %}
+      </ul>
+      <h2 class="mb-3">Side projects portfolio (Click pictures for hyperlink)</h2>
+      <!-- description Section -->
+      <div id="portfolioCarousel" class="carousel slide justify-content-center" data-bs-ride="carousel" style="max-height: 400px;">
+        <div class="carousel-inner">
+            <!-- UUU project -->
+            <div class="carousel-item active">
+                <a href="https://github.com/za416854/UUBankErp" target="_blank">
+                    <img src="../static/img/UUU_ERP.jpg" class="d-block mx-auto" style="width: 500px; height: 300px; object-fit: cover;">
+                </a>
+            </div>
+            <!-- UUU project -->
+            <div class="carousel-item">
+                <a href="https://github.com/za416854/Spot" target="_blank">
+                    <img src="../static/img/travegator.jpg" class="d-block mx-auto" style="width: 500px; height: 300px; object-fit: cover;">
+                </a>
+            </div>
+        </div>
+        <!-- travegator project -->
+        <button class="carousel-control-prev" data-bs-target="#portfolioCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span> 
+        </button>
+        <button class="carousel-control-next" data-bs-target="#portfolioCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span> 
+        </button>
+      </div>
+      <!-- frameworks Section -->
+      <h2 class="mb-3">Frameworks</h2>
+      <ul class="list-group mb-5">
+        {% for framework in about_dict.Frameworks %}
+        <li class="list-group-item">{{ framework }}</li>
+        {% endfor %}
+      </ul>
+      <!-- database Section -->
+      <h2 class="mb-3">Database</h2>
+      <ul class="list-group mb-5">
+        {% for db in about_dict.Database %}
+        <li class="list-group-item">{{ db }}</li>
+        {% endfor %}
+      </ul>
+      <!-- others Section -->
+      <h2 class="mb-3">Other Skills</h2>
+      <ul class="list-group mb-5">
+        {% for other in about_dict.Others %}
+        <li class="list-group-item">{{ other }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

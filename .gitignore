@@ -1,0 +1,6 @@
+*.pyc
+*.docx
+*.pdf
+sql_syntax.sql
+.venv
+*.tmp

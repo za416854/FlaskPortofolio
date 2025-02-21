@@ -1,0 +1,67 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container my-4">
+  <div class="d-flex justify-content-center">
+    <div class="card bg-dark text-light p-4" style="width: 60rem">
+      <h2 class="text-center mb-4">Sign Up</h2>
+      <form method="POST">
+        <!-- userID -->
+        <div class="mb-3">
+          <label for="userID" class="form-label">UserID</label>
+          <input type="text" id="userID" class="form-control" required />
+        </div>
+        <!-- password -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" class="form-control" required />
+        </div>
+        <!-- confirm password -->
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label"
+            >Confirm Password</label
+          >
+          <input
+            type="password"
+            id="confirmPassword"
+            class="form-control"
+            required
+          />
+        </div>
+        <!-- first Name -->
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" id="firstName" class="form-control" required />
+        </div>
+        <!-- last name -->
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input type="text" id="lastName" class="form-control" required />
+        </div>
+        <!-- email -->
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" id="email" class="form-control" required />
+        </div>
+        <!-- birth date -->
+        <div class="mb-3">
+          <label for="birthDate" class="form-label">Birth Date</label>
+          <input type="date" id="birthDate" class="form-control" required />
+        </div>
+        <!-- mobile -->
+        <div class="mb-3">
+          <label for="mobile" class="form-label">Mobile (Optional)</label>
+          <input type="text" id="mobile" class="form-control" />
+        </div>
+        <!-- Submit Button -->
+        <button id="signup" class="btn btn-success w-100 mb-2">Sign Up</button>
+      </form>
+      <!-- login link -->
+      <div class="text-center">
+        <p class="mt-2 mb-0" style="font-size: 0.8rem">Already have an account?</p>
+        <a class="btn btn-secondary w-100" href="/login">Login</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/signup.js') }}"></script>
+
+{% endblock content %}

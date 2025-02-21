@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+  <div class="card bg-dark p-4" style="width: 60rem;">
+    <h3 class="text-center mb-4 text-light">Login</h3>
+    <form method="POST" action="{{ url_for('login') }}">
+      <!-- user ID field -->
+      <div class="mb-3">
+        <label for="user ID" class="form-label text-light">user ID</label>
+        <input
+          type="text"
+          id="userID"
+          name="userID"
+          class="form-control"
+          placeholder="Enter your user ID"
+          required
+        />
+      </div>
+
+      <!-- password field -->
+      <div class="mb-3">
+        <label for="password" class="form-label text-light">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="form-control"
+          placeholder="Enter your password"
+          required
+        />
+      </div>
+
+      <!-- login btn -->
+      <button type="submit" class="btn btn-primary w-100 mb-2">Login</button>
+
+      <!-- sign Up btn -->
+      <a class="btn btn-secondary w-100" href="{{ url_for('signup') }}">Sign Up</a>
+
+      <!-- forgot Password -->
+      <div class="text-center">
+        <a href="{{ url_for('forgot_password') }}" class="btn btn-link text-decoration-none">
+          Forgot Password?
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}

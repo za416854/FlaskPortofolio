@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wen-Hsuan's Forum</title>
+    <link rel="icon" href="../static/img/favicon.ico" type="image/x-icon">
+    <!-- import Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <!-- import Ions -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- import jQuery and Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- import Bootstrap JS (include Popper.js) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel=stylesheet type=text/css href="{{ url_for('static',
+    filename='style.css') }}">
+  </head>
+  <body>
+    <!-- Body Content -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/home">Home</a>
+        <ul class="navbar-nav d-flex w-100">
+          <li class="nav-item">
+            <a class="nav-link active" href="/about">About</a>
+          </li>
+          <li class="nav-item ms-2" >
+            <a class="nav-link active" href="/expense">Expense Dashboard</a>
+          </li>
+          <li class="nav-item ms-auto">
+            <a class="nav-link active" href="/account">Edit Account</a>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link btn btn-link active" href="#" id="authLink">
+              {% if session['user'] %} Logout {% else %} Login {% endif %}
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul class="list-group">
+      {% for message in messages %}
+      <li class="list-group-item list-group-item-warning text-center">
+        {{ message }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %} {% block content %} {% endblock content %}
+
+    <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+  </body>
+  <!-- Footer -->
+  {% block footer %}
+  <footer class="bg-dark text-white text-center mt-auto">
+    <p class="d-flex justify-content-center"> 
+        <a href="https://www.facebook.com/chris.hu.92/" target="_blank" class="text-white mx-3 fa-1x">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://github.com/za416854" target="_blank" class="text-white mx-3  fa-1x">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/kris-wen-hsuan-hu-a71b51183/" target="_blank" class="text-white mx-3 fa-1x">
+          <i class="fab fa-linkedin"></i>
+        </a> 
+      &copy; 2025 -&ensp;
+      <a href="https://za416854.github.io/" target="_blank" class="text-white">Wen-Hsuan Hu</a>
+      &ensp;All rights reserved.
+    </p>
+  </footer>
+  {% endblock footer %}
+</html>

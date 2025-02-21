@@ -1,0 +1,52 @@
+{% extends "layout.html" %} {% block title %}Home{% endblock title %} {% block
+content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav me-3">
+      <li class="nav-item">
+        <!-- _blank will open a new tag -->
+        <a id="news" class="nav-link text-white" target="_blank">
+          <span class="news-title me-2"></span>
+          <span class="news-icon text-danger">
+            <img
+              src="../static/img/newspaper-icon.svg"
+              class="news-svg" 
+            />
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="container-fluid">
+    <ul class="navbar-nav ms-auto me-3">
+      <li class="nav-item">
+        <a class="nav-link btn btn-primary active" href="/post">
+          New Post / Experience
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container mt-4 min-vh-100">
+  <div class="row">
+    {% for question in questions %}
+    <div class="col-12 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h3 style="color: black" class="card-title">{{ question.title }}</h3>
+          <hr class="text-dark" />
+          <p style="color: black" class="card-text">{{ question.content }}</p>
+          <a
+            href="/question/{{ question.id }}"
+            class="btn btn-link"
+            style="text-decoration: none"
+            >More details...</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock content %}

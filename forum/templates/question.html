@@ -1,0 +1,91 @@
+{% extends "layout.html" %} {% block content %} {% for post in posts %} {% if
+post.userID == session['user'] %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <ul class="navbar-nav ms-auto me-3 d-flex align-items-center">
+      <li class="nav-item">
+        <form
+          action="{{ url_for('delete_post', post_id=post.id) }}"
+          method="POST"
+          onsubmit="return confirmDelete()"
+        >
+          <button type="submit" class="btn btn-danger">Delete Post</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endif %}
+<div class="container my-4 font-black">
+  <!-- topic content -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3>{{ post.title }}</h3>
+      <p class="text-end">
+        Posted by {{ post.userID }} - {{ post.createDate }}
+      </p>
+    </div>
+    <div class="card-body">
+      <p>{{ post.content | replace('\n', '<br>''<br>')| safe}}</p>
+      {% if post.photo %}
+      <img
+        src="data:image/jpeg;base64,{{ post.photo }}"
+        alt="Post Image"
+        class="img-fluid rounded post-image"
+      />
+      {% else %}
+      <p></p>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- new comment input area -->
+  <div class="card mb-4">
+    <form id="commentForm" method="POST" action="/question/{{ post.id }}">
+      <div class="input-group">
+        <textarea
+          class="form-control"
+          name="comment"
+          placeholder="Add a comment..."
+          required
+        ></textarea>
+      </div>
+      <div class="d-flex justify-content-end mt-3">
+        <button class="btn btn-primary" type="submit">Post</button>
+      </div>
+    </form>
+  </div>
+  {% endfor %}
+  <!-- comment area -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <h5>Comments</h5>
+    </div>
+    <div class="card-body">
+      <!-- current comment -->
+      {% if comments %} {% for comment in comments %}
+      <div class="mb-3">
+        <div class="d-inline">
+          <strong
+            >{{ comment.firstName }} {{ comment.lastName }} ({{ comment.userID
+            }})</strong
+          >
+          <p class="text-muted text-end small">{{ comment.createDate }}</p>
+        </div>
+        <p>{{ comment.commentText }}</p>
+        <hr />
+      </div>
+      {% endfor %} {% else %}
+      <div class="mb-3">
+        <strong>There is no comment so far, be a first one!</strong>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<script>
+  function confirmDelete() {
+    return confirm("Are you sure you want to delete this post?");
+  }
+</script>
+{% endblock content %}
